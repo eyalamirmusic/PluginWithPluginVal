@@ -33,3 +33,14 @@ target_link_libraries(${BaseTargetName} PRIVATE
         juce_recommended_config_flags
         juce_recommended_lto_flags
         juce_recommended_warning_flags)
+
+get_target_property(artefact ${BaseTargetName}_VST3 JUCE_PLUGIN_ARTEFACT_FILE)
+
+add_custom_target(${BaseTargetName}_Pluginval
+        COMMAND
+        pluginval
+        --validate
+        --strictness-level 10
+        ${artefact}
+        DEPENDS ${BaseTargetName}_VST3 pluginval
+        VERBATIM)
