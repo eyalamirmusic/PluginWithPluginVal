@@ -25,15 +25,14 @@ option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 
 CPMAddPackage("gh:juce-framework/JUCE#develop")
 
-option(EA_USE_PLUGINVAL "Use PluginVal" ON)
+option(EA_USE_PLUGINVAL "" ON)
 
 if (EA_USE_PLUGINVAL)
     CPMAddPackage(
             NAME pluginval
-            GIT_REPOSITORY git@github.com:eyalamirmusic/Pluginval.git
-            GIT_TAG origin/develop
-            OPTIONS "PLUGINVAL_FETCH_JUCE OFF"
-            "PLUGINVAL_USE_DEFAULT_APPLE_SETTINGS FALSE")
+            GIT_REPOSITORY git@github.com:Tracktion/Pluginval.git
+            GIT_TAG develop
+            OPTIONS "PLUGINVAL_FETCH_JUCE OFF")
 endif ()
 
 add_subdirectory(Modules)

@@ -36,11 +36,12 @@ target_link_libraries(${BaseTargetName} PRIVATE
 
 get_target_property(artefact ${BaseTargetName}_VST3 JUCE_PLUGIN_ARTEFACT_FILE)
 
-add_custom_target(${BaseTargetName}_Pluginval
-        COMMAND
-        pluginval
+# Assuming 'pluginval' is a target in your project
+add_custom_target(${BaseTargetName}WithPluginVal
+        COMMAND $<TARGET_FILE:pluginval>
         --validate
         --strictness-level 10
         ${artefact}
-        DEPENDS ${BaseTargetName}_VST3 pluginval
-        VERBATIM)
+        DEPENDS pluginval ${BaseTargetName}_VST3
+        COMMENT "Running pluginval with strict validation"
+)
